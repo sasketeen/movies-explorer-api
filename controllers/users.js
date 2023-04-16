@@ -26,12 +26,13 @@ module.exports.signUp = (req, res, next) => {
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequest('Переданы некорректные данные при создании пользователя'));
-      } else
+        return;
+      }
       if (err.code === 11000) {
         next(new ConflictingRequest('Такой пользователь уже существует'));
-      } else {
-        next(err);
+        return;
       }
+      next(err);
     });
 };
 
