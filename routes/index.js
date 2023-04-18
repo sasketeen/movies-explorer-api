@@ -7,10 +7,10 @@ const moviesRouter = require('./movies');
 const auth = require('../middlewares/auth');
 const NotFound = require('../errors/NotFound');
 
-router.use('/', authRouter);
+router.use('/api/', authRouter);
 router.use(auth);
-router.use('/users', userRouter);
-router.use('/movies', moviesRouter);
+router.use('/api/users', userRouter);
+router.use('/api/movies', moviesRouter);
 router.use('/*', (req, res, next) => {
   next(new NotFound('Как ты тут оказался?'));
 });
