@@ -77,6 +77,7 @@ module.exports.deleteMovie = (req, res, next) => {
     .then((movie) => {
       if (req.user._id !== movie.owner._id.toString()) {
         next(new Forbidden('Доступ запрещен'));
+        return;
       }
       Movie
         .deleteOne()
