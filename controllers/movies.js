@@ -80,7 +80,7 @@ module.exports.deleteMovie = (req, res, next) => {
         return;
       }
       Movie
-        .deleteOne()
+        .findByIdAndRemove(movieId)
         .then(() => res.send(movie))
         .catch((err) => next(err));
     })
